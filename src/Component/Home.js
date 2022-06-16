@@ -1,11 +1,11 @@
-import React from 'react';
+import { Container } from "@chakra-ui/react";
 
 const Home = () => {
-    return (
-        <div>
-            home
-        </div>
-    );
+  return (
+    <Container>
+      home
+    </Container>
+  );
 };
 
 export default Home;

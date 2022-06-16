@@ -1,13 +1,16 @@
-import { Route, Routes } from 'react-router-dom';
-import Home from './Component/Home';
+import { Route, Routes } from "react-router-dom";
+import ChatPage from "./Component/ChatPage";
+import Home from "./Component/Home";
 
 function App() {
   return (
-    <div>
-      <Routes>
-        <Route path='/' element={<Home></Home>}></Route>
-      </Routes>
-    </div>
+  <>
+  <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/chats" element={<ChatPage />} />
+  </Routes>
+
+  </>
   );
 }
 
