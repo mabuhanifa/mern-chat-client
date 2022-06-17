@@ -19,8 +19,13 @@ const Signup = () => {
   const [confirmpassword, setConfirmpassword] = useState();
   const [password, setPassword] = useState();
   const [pic, setPic] = useState();
+  const [loading, setLoading] = useState(false);
   const [picLoading, setPicLoading] = useState(false);
+// const  postDetails =  (pic) => {
+//   setPicLoading(true);
+//   if (pic === undefined){
 
+//   }};
   const submitHandler = async () => {
     setPicLoading(true);
     if (!name || !email || !password || !confirmpassword) {
@@ -52,7 +57,7 @@ const Signup = () => {
         },
       };
       const { data } = await axios.post(
-        "/api/user",
+        "http://localhost:5000/api/user",
         {
           name,
           email,
@@ -101,9 +106,9 @@ const Signup = () => {
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
       const data = new FormData();
       data.append("file", pics);
-      data.append("upload_preset", "chat-app");
-      data.append("cloud_name", "piyushproj");
-      fetch("https://api.cloudinary.com/v1_1/piyushproj/image/upload", {
+      data.append("upload_preset", "MERN-CHAT");
+      data.append("cloud_name", "dw4ey8uzt");
+      fetch("https://api.cloudinary.com/v1_1/dw4ey8uzt/image/upload", {
         method: "post",
         body: data,
       })

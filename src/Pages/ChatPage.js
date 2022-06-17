@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 const ChatPage = () => {
     const fetchChat = async() => {
-        const data = await axios.get('/api/chat');
+        const data = await axios.get('http://localhost:3000/api/chat');
         console.log(data);
     }
     useEffect(() => {
