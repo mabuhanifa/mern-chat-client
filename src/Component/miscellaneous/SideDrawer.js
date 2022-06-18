@@ -5,7 +5,8 @@ import {
   Box,
   Button,
   Drawer,
-  DrawerBody, DrawerContent,
+  DrawerBody,
+  DrawerContent,
   DrawerHeader,
   DrawerOverlay,
   Input,
@@ -15,11 +16,15 @@ import {
   MenuList,
   Spinner,
   Text,
+  Toast,
   Tooltip
 } from "@chakra-ui/react";
+import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ChatState } from "../../Context/ChatProvider";
+import ChatLoading from "../ChatLoading";
+import UserListItem from "../UserAvatar/UserListItem";
 import ProfileModal from "./ProfileModal";
 
 const SideDrawer = () => {
@@ -33,10 +38,10 @@ const SideDrawer = () => {
   const logoutHandler = () => {
     localStorage.removeItem("userInfo");
     navigate("/");
-  }
-  const handleSearch = (e) => {
+  };
+  const handleSearch = async () => {
     if (!search) {
-      toast({
+      Toast({
         title: "Please Enter something in search",
         status: "warning",
         duration: 5000,
@@ -55,12 +60,15 @@ const SideDrawer = () => {
         },
       };
 
-      const { data } = await axios.get(`/api/user?search=${search}`, config);
+      const { data } = await axios.get(
+        `http://localhost:5000/api/user?search=${search}`,
+        config
+      );
 
       setLoading(false);
       setSearchResult(data);
     } catch (error) {
-      toast({
+      Toast({
         title: "Error Occured!",
         description: "Failed to Load the Search Results",
         status: "error",
@@ -69,8 +77,8 @@ const SideDrawer = () => {
         position: "bottom-left",
       });
     }
-  }
-  
+  };
+
   return (
     <>
       <div className="drawer">
