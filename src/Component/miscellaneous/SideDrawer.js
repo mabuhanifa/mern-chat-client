@@ -14,10 +14,9 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
-  Spinner,
   Text,
-  Toast,
-  Tooltip
+  Tooltip,
+  useToast
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
@@ -28,6 +27,7 @@ import UserListItem from "../UserAvatar/UserListItem";
 import ProfileModal from "./ProfileModal";
 
 const SideDrawer = () => {
+  const toast = useToast();
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
@@ -41,7 +41,7 @@ const SideDrawer = () => {
   };
   const handleSearch = async () => {
     if (!search) {
-      Toast({
+      toast({
         title: "Please Enter something in search",
         status: "warning",
         duration: 5000,
@@ -68,7 +68,7 @@ const SideDrawer = () => {
       setLoading(false);
       setSearchResult(data);
     } catch (error) {
-      Toast({
+      toast({
         title: "Error Occured!",
         description: "Failed to Load the Search Results",
         status: "error",
@@ -78,14 +78,17 @@ const SideDrawer = () => {
       });
     }
   };
+  const accessChat = {};
 
   return (
     <>
       <div className="drawer">
         <Tooltip label="Search Users to chat" hasArrow placement="bottom-end">
-          <Button variant="ghost">
+          <Button variant="ghost" onClick={onOpen}>
             <i className="fas fa-search"></i>
-            <Text d={{ base: "none", md: "flex" }}>Search User</Text>
+            <Text d={{ base: "none", md: "flex" }} px="4">
+              Search User
+            </Text>
           </Button>
         </Tooltip>
         <Text>Tell and Talk</Text>
@@ -121,25 +124,27 @@ const SideDrawer = () => {
           <DrawerBody>
             <Box d="flex" pb={2}>
               <Input
-                placeholder="Search by name or email"
+                placeholder="Search Users"
                 mr={2}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
-              <Button onClick={handleSearch}>Go</Button>
+
+              <Button onClick={handleSearch}>Search</Button>
             </Box>
             {loading ? (
               <ChatLoading />
             ) : (
-              searchResult?.map((user) => (
+              searchResult.map((user) => (
                 <UserListItem
-                  key={user._id}
+                  key={user.id}
                   user={user}
-                  handleFunction={() => accessChat(user._id)}
+                  handleFunction={() => {
+                    accessChat(user._id);
+                  }}
                 />
               ))
             )}
-            {loadingChat && <Spinner ml="auto" d="flex" />}
           </DrawerBody>
         </DrawerContent>
       </Drawer>

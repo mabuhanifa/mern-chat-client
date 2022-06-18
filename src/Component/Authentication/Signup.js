@@ -49,7 +49,7 @@ const Signup = () => {
       });
       return;
     }
-    console.log(name, email, password, pic);
+    console.log(name, email);
     try {
       const config = {
         headers: {
