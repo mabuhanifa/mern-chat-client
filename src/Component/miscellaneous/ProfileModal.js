@@ -1,5 +1,5 @@
 
-const ProfileModel = () => {
+const ProfileModal = () => {
     return (
         <div>
             
@@ -7,4 +7,4 @@ const ProfileModel = () => {
     );
 };
 
-export default ProfileModel;
+export default ProfileModal;
