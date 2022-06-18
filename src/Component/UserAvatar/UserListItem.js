@@ -2,7 +2,6 @@ import { Avatar } from "@chakra-ui/avatar";
 import { Box, Text } from "@chakra-ui/layout";
 
 const UserListItem = ({ user, handleFunction }) => {
-
   return (
     <Box
       onClick={handleFunction}

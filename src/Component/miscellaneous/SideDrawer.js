@@ -119,7 +119,6 @@ const SideDrawer = () => {
     }
   };
 
-  
   return (
     <>
       <div className="drawer">
@@ -170,7 +169,9 @@ const SideDrawer = () => {
                 onChange={(e) => setSearch(e.target.value)}
               />
 
-              <Button onClick={handleSearch}>Search</Button>
+              <Button mt={2} w="100%" colorScheme="blue" onClick={handleSearch}>
+                Search
+              </Button>
             </Box>
             {loading ? (
               <ChatLoading />

@@ -13,9 +13,9 @@ const Chatpage = () => {
       {user && <SideDrawer />}
       <div className="box_main">
         {user && <MyChats fetchAgain={fetchAgain} />}
-        {user && 
+        {user && (
           <Chatbox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />
-        }
+        )}
       </div>
     </div>
   );
