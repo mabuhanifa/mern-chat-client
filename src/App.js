@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import ChatPage from "./Pages/ChatPage";
+import Chatpage from "./Pages/ChatPage";
 import Home from "./Pages/Home";
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
   <>
   <Routes>
     <Route path="/" element={<Home />} />
-    <Route path="/chats" element={<ChatPage />} />
+    <Route path="/chats" element={<Chatpage />} />
   </Routes>
 
   </>

@@ -1,10 +1,10 @@
 
-const ChatBox = () => {
+const Chatbox = () => {
     return (
         <div>
-            
+            dddddd
         </div>
     );
 };
 
-export default ChatBox;
+export default Chatbox;
